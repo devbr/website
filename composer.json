@@ -1,0 +1,34 @@
+{
+    "name": "devbr/website",
+    "description": "Core for PHP website",
+    "keywords": ["framework","skeleton","core","php","web","site","server","side"],
+    "license": "MIT",
+    "type": "project",
+    "homepage": "http://paulorocha.tk/devbr/",
+    "authors": [{
+        "name": "Bill Rocha",
+        "email": "prbr@ymail.com"
+    }],
+    "config": {
+        "vendor-dir": ".php/Composer",
+        "bin-dir": ".php/Composer/bin",
+        "preferred-install": "dist"
+    },
+    "archive": {
+        "exclude": ["/doc", "/*.json", "/.git", "/*.md", "/php/Config"]
+    },
+    "require": {
+        "php": ">=7.0.9",
+        "devbr/html": "~0.0.1"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {"Config\\": ".php/Config/"}
+    },
+    "scripts": {
+        "post-install-cmd":         [".php index.php install"],
+        "post-update-cmd":          [".php index.php update"],
+        "post-create-project-cmd":  [".php index.php key:generate"]
+    }
+}
