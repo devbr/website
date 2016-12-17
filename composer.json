@@ -20,7 +20,8 @@
     "require": {
         "php": ">=7.0.9",
         "devbr/html": "~0.0.1",
-        "devbr/database": "~0.0.1"
+        "devbr/database": "~0.0.1",
+        "devbr/router": "~0.0.1"
     },
     "require-dev": {
     },
