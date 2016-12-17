@@ -1,12 +1,12 @@
-# Base
-Basic PHP website.
+# Website Core
+Core for PHP website.
 
 
 # Install
-Type in the terminal:
+In the root directory of your website, type (terminal):
 
 ```shell
-Composer create-project pedra/base ./ 
+Composer create-project devbr/website ./ 
 ```
 
 Require [PHP 7](http://www.php.net/) & [Composer](https://getcomposer.org/download/).
