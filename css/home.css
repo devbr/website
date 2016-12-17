@@ -10,3 +10,10 @@ h1 {
 	font-size: 7em;
 	font-family: monospace;
 }
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
