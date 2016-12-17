@@ -1,0 +1,12 @@
+
+
+.container {
+	width: 300px;
+	margin: 10% auto;
+	text-align: center;
+}
+
+h1 {
+	font-size: 7em;
+	font-family: monospace;
+}

@@ -51,7 +51,7 @@ defined('_WWW')    || define('_WWW', str_replace('\\', '/', strpos($base, 'phar:
 defined('_PHAR')   || define('_PHAR', strpos(_WWW, 'phar://') !== false ? _WWW : false);
 defined('_APP')    || define('_APP', dirname(__DIR__).'/');	//Path to Application
 defined('_CONFIG') || define('_CONFIG', __DIR__.'/');		//Path to config files
-defined('_HTML')   || define('_HTML', _WWW.'html/');		//Path to HTML files
+defined('_HTML')   || define('_HTML', _APP.'Html/');		//Path to HTML files
 
 // Autoload
 set_include_path(_APP.PATH_SEPARATOR.get_include_path());
@@ -63,10 +63,6 @@ spl_autoload_register(function($class) {
 
 // Composer autoloader
 if(file_exists(_APP.'Composer/autoload.php')) include _APP.'Composer/autoload.php';
-
-// Error/Exception
-set_error_handler(['Lib\Debug','errorHandler']);
-set_exception_handler(['Lib\Debug', 'exceptionHandler']);
 
 //Onm Cli mode
 if(php_sapi_name() === 'cli') return new Core($argv);
