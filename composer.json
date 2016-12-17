@@ -27,8 +27,8 @@
         "psr-4": {"Config\\": ".php/Config/"}
     },
     "scripts": {
-        "post-install-cmd":         [".php index.php install"],
-        "post-update-cmd":          [".php index.php update"],
-        "post-create-project-cmd":  [".php index.php key:generate"]
+        "post-install-cmd":         ["php index.php install"],
+        "post-update-cmd":          ["php index.php update"],
+        "post-create-project-cmd":  ["php index.php key:generate"]
     }
 }
