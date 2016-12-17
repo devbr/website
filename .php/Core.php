@@ -128,7 +128,13 @@ class Core
     //Command UPDATE
     function cmdUpdate($v, $arg)
     {
-        //TODO : optimize!
+        $devbr = __DIR__.'/Composer/devbr/';
+        $dir = scandir($devbr);
+
+        foreach($dir as $k){
+            if($k == '.' || $k == '..') continue;
+            if(is_file($devbr.$k.'/install')) echo include $devbr.$k.'/install';
+        }
         echo "\n  >> Updated - success!\n";
     }
 
