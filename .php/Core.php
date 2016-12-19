@@ -18,7 +18,7 @@
 class Core 
 {
 
-    private $configKeysPath = null;
+    private $configKeyPath = null;
     private $configTemplate = null;
     private $cliPath = null;
     private $timer = 0;
@@ -30,7 +30,7 @@ class Core
 
         //Constants:
         $this->cliPath = __DIR__.'/';
-        $this->configKeysPath = _CONFIG.'Key/';
+        $this->configKeyPath = _CONFIG.'Key/';
         $this->configTemplate = _CONFIG.'Template/';
         $this->timer = microtime(true);
 
@@ -76,12 +76,12 @@ class Core
 
         if($v == 'generate'){
             //check if path exists
-            if(!is_dir($this->configKeysPath)) $this->checkAndOrCreateDir($this->configKeysPath, true);
+            if(!is_dir($this->configKeyPath)) $this->checkAndOrCreateDir($this->configKeyPath, true);
 
             //Now, OPEN_SSL
             $this->createKeys();
             echo "\n  Can, OpenSSL keys & certificates - created success!";
-            return "\n  Location: ".$this->configKeysPath."\n\n";
+            return "\n  Location: ".$this->configKeyPath."\n\n";
         }
 
         elseif($v == 'list'){
@@ -195,13 +195,13 @@ class Core
         //Create Can Keys            
         shuffle(Lib\Can::$base);
         shuffle(Lib\Can::$extra_base);
-        file_put_contents($this->configKeysPath.'can.key', implode(Lib\Can::$base)."\n".implode(Lib\Can::$extra_base));
+        file_put_contents($this->configKeyPath.'can.key', implode(Lib\Can::$base)."\n".implode(Lib\Can::$extra_base));
 
         $SSLcnf = [];
         $dn = []; 
 
         //get configurations
-        include $this->configKeysPath.'openssl.config.php';
+        include $this->configKeyPath.'openssl.config.php';
 
         // Generate a new private (and public) key pair
         $privkey = openssl_pkey_new($SSLcnf);
@@ -215,16 +215,16 @@ class Core
         $sscert = openssl_csr_sign($csr, null, $privkey, 365, $SSLcnf);
 
         //CERTIFICADO
-        openssl_csr_export_to_file($csr, $this->configKeysPath.'certificate.crt', false);
+        openssl_csr_export_to_file($csr, $this->configKeyPath.'certificate.crt', false);
 
         //CERTIFICADO AUTO-ASSINADO
-        openssl_x509_export_to_file($sscert, $this->configKeysPath.'self_signed_certificate.cer', false);
+        openssl_x509_export_to_file($sscert, $this->configKeyPath.'self_signed_certificate.cer', false);
 
         //CHAVE PRIVADA (private.pem)
-        openssl_pkey_export_to_file($privkey , $this->configKeysPath.'private.key', null, $SSLcnf);
+        openssl_pkey_export_to_file($privkey , $this->configKeyPath.'private.key', null, $SSLcnf);
 
         //CHAVE PÚBLICA (public.key)
-        return file_put_contents($this->configKeysPath.'public.key', openssl_pkey_get_details($privkey)['key']);
+        return file_put_contents($this->configKeyPath.'public.key', openssl_pkey_get_details($privkey)['key']);
     }
 
     //Help display
