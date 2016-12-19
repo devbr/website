@@ -18,23 +18,8 @@ use Lib;
 
 class App 
 {    
-    private static $url = '';
-    private static $pathConfig = '';
-
     private static $dock = [];
     private static $vars = [];
-
-    static function url($url = null) 
-    {
-        if($url === null) return static::$url;
-        return static::$url = rtrim($url, ' \\/').'/';;
-    }
-
-    static function pathConfig($cfg = null) 
-    {
-        if($cfg === null) return static::$pathConfig;
-        return static::$pathConfig = rtrim($cfg, ' \\/').'/';
-    }
 
     /* Set/Get variables
      * name = value par
@@ -66,7 +51,7 @@ class App
     {
         //se tiver 'http' na uri então será externo.
         if (strpos($url, 'http://') === false && strpos($url, 'https://') === false){
-            $url = defined('_URL') ? _URL.$url : static::$url.$url;
+            $url = defined('_URL') ? _URL.$url : $url;
         }
 
         //send header
@@ -86,7 +71,7 @@ class App
         if(!file_exists($file)) return false;
 
         //gerando header apropriado
-        include static::$pathConfig.'Neos/mimetypes.php';
+        include _CONFIG.'mimetypes.php';
         $ext = end((explode('.', $file)));
         if (!isset($_mimes[$ext])) $mime = 'text/plain';
         else $mime = (is_array($_mimes[$ext])) ? $_mimes[$ext][0] : $_mimes[$ext];
