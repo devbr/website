@@ -4,7 +4,7 @@
 * 
 */
 
-namespace Home;
+namespace Site;
 
 use Resource\Main;
 
