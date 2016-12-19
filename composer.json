@@ -15,7 +15,7 @@
         "preferred-install": "dist"
     },
     "archive": {
-        "exclude": ["/doc", "/*.json", "/.git", "/*.md", "/php/Config"]
+        "exclude": ["/doc", "/*.json", "/.git", "/*.md", "/.php/Config"]
     },
     "require": {
         "php": ">=7.0.9",
