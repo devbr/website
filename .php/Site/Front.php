@@ -1,7 +1,6 @@
 <?php
 /**
- * Home Controller
-* 
+ * Site Front Page 
 */
 
 namespace Site;
@@ -14,7 +13,7 @@ class Page extends Main
 	public $styles = ['home'];
 	public $scripts = ['main'];
 
-	function index()
+	function page()
 	{
 		$this->response('home',['title'=>'Hello World']);
 	}
