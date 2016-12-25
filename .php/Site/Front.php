@@ -7,7 +7,7 @@ namespace Site;
 
 use Resource\Main;
 
-class Page extends Main
+class Front extends Main
 {
 	
 	public $styles = ['home'];
