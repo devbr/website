@@ -1,4 +1,6 @@
-
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
 
 .container {
 	width: 300px;
@@ -8,7 +10,7 @@
 
 h1 {
 	font-size: 7em;
-	font-family: monospace;
+	font-family: Arial, monospace;
 }
 
 footer {
