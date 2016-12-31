@@ -1,15 +1,15 @@
 <?php
-
 /**
- * Application resources
- * @copyright   Bill Rocha - http://plus.google.com/+BillRocha
- * @license     MIT
- * @author      Bill Rocha - prbr@ymail.com
- * @version     0.0.1
- * @package     Lib
- * @access      public
- * @since       0.3.0
+ * Lib\App
+ * PHP version 7
  *
+ * @category  Library
+ * @package   Application
+ * @author    Bill Rocha <prbr@ymail.com>
+ * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
+ * @license   <https://opensource.org/licenses/MIT> MIT
+ * @version   GIT: 0.0.1
+ * @link      http://paulorocha.tk/github/devbr
  */
 
 namespace Lib;
@@ -17,6 +17,15 @@ namespace Lib;
 use Lib;
 use Config\Resource;
 
+/**
+ * App Class
+ *
+ * @category Library
+ * @package  Application
+ * @author   Bill Rocha <prbr@ymail.com>
+ * @license  <https://opensource.org/licenses/MIT> MIT
+ * @link     http://paulorocha.tk/github/devbr
+ */
 class App 
 {    
     private static $dock = [];
