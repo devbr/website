@@ -1,7 +1,7 @@
 <?php
 
 /**
- * NEOS PHP FRAMEWORK
+ * Application resources
  * @copyright   Bill Rocha - http://plus.google.com/+BillRocha
  * @license     MIT
  * @author      Bill Rocha - prbr@ymail.com
@@ -15,6 +15,7 @@
 namespace Lib;
 
 use Lib;
+use Config\Resource;
 
 class App 
 {    
@@ -69,12 +70,19 @@ class App
 
         //checando a existencia do arquivo solicitado
         if(!file_exists($file)) return false;
-
+        
         //gerando header apropriado
-        include _CONFIG.'mimetypes.php';
         $ext = end((explode('.', $file)));
-        if (!isset($_mimes[$ext])) $mime = 'text/plain';
-        else $mime = (is_array($_mimes[$ext])) ? $_mimes[$ext][0] : $_mimes[$ext];
+
+        $mime = Resource\Mimetype::getMimetype($ext);
+
+        if ($mime) {
+            if (is_array($mime)) {
+                $mime = $mime[0];
+            }
+        } else {
+            $mime = 'text/plain';
+        }
 
         //get file
         $content = file_get_contents($file);
