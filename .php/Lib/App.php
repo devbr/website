@@ -75,14 +75,7 @@ class App
         $ext = end((explode('.', $file)));
 
         $mime = Resource\Mimetype::getMimetype($ext);
-
-        if ($mime) {
-            if (is_array($mime)) {
-                $mime = $mime[0];
-            }
-        } else {
-            $mime = 'text/plain';
-        }
+        if(!$mime) $mime = 'text/plain';
 
         //get file
         $content = file_get_contents($file);
