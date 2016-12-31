@@ -65,4 +65,4 @@ spl_autoload_register(function($class) {
 if(file_exists(_APP.'Composer/autoload.php')) include _APP.'Composer/autoload.php';
 
 //Onm Cli mode
-if(php_sapi_name() === 'cli') return new Core($argv);
+if(php_sapi_name() === 'cli') return new Resource\Core($argv);
