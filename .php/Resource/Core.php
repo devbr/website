@@ -5,15 +5,13 @@
  * @license     MIT
  * @author      Bill Rocha - prbr@ymail.com
  * @version     0.2.1
- * @package     Limp
+ * @package     Resource
  * @access      public
  * @since       0.3.0
  *
  */
 
-//namespace ;
-
-//use Limp\Data;
+namespace Resource;
 
 class Core 
 {
