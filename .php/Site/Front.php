@@ -17,4 +17,11 @@ class Front extends Main
 	{
 		$this->response('home',['title'=>'Hello World']);
 	}
+	
+	function test($rqst, $param)
+	{
+		echo '<h1>Test</h1>'.
+			 '<br><b>Request: </b>'.$rqst.
+			 '<br><b>Params: </b><pre>'.print_r($param, true).'</pre>';
+	}
 }
