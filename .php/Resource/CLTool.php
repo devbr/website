@@ -1,35 +1,45 @@
 <?php
 /**
- * PHP BASE
- * @copyright   Bill Rocha - http://plus.google.com/+BillRocha
- * @license     MIT
- * @author      Bill Rocha - prbr@ymail.com
- * @version     0.2.1
- * @package     Resource
- * @access      public
- * @since       0.3.0
+ * Resource\CLTool
+ * PHP version 7
  *
+ * @category  CLT
+ * @package   Resource
+ * @author    Bill Rocha <prbr@ymail.com>
+ * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
+ * @license   <https://opensource.org/licenses/MIT> MIT
+ * @version   GIT: 0.0.2
+ * @link      http://paulorocha.tk/github/devbr
  */
 
 namespace Resource;
 
 use Lib;
 
-class CLTool 
+/**
+ * CLTool Class
+ *
+ * @category CLT
+ * @package  Resource
+ * @author   Bill Rocha <prbr@ymail.com>
+ * @license  <https://opensource.org/licenses/MIT> MIT
+ * @link     http://paulorocha.tk/github/devbr
+ */
+class CLTool
 {
 
     private $configKeyPath = null;
     private $configTemplate = null;
-    private $cliPath = null;
     private $timer = 0;
 
     function __construct($argv)
     {
-        echo '  PHP Tools!';
-        if (php_sapi_name() !== 'cli') exit('It\'s no cli!');
+        echo '  Command Line Tool!';
+        if (php_sapi_name() !== 'cli') {
+            exit('It\'s no cli!');
+        }
 
         //Constants:
-        $this->cliPath = __DIR__.'/';
         $this->configKeyPath = _CONFIG.'Key/';
         $this->configTemplate = _CONFIG.'Template/';
         $this->timer = microtime(true);
@@ -37,7 +47,7 @@ class CLTool
         //Command line settings...
         echo $this->request($argv);
 
-        exit("\n  Finished in ".number_format((microtime(true)-$this->timer)*1000,3)." ms.\n");
+        exit("\n  Finished in ".number_format((microtime(true)-$this->timer)*1000, 3)." ms.\n");
     }
 
     //CORE Request
@@ -45,17 +55,29 @@ class CLTool
     {
         array_shift($rqst);
         $ax = $rqst;
-        foreach($rqst as $a){
+        foreach ($rqst as $a) {
             array_shift($ax);
-            if(strpos($a, '-h') !== false || strpos($a, '?') !== false) return $this->help();
-            if(strpos($a, 'optimize') !== false) return $this->cmdOptimize(substr($a, 8), $ax);
-            if(strpos($a, 'install') !== false) return $this->cmdInstall(substr($a, 7), $ax);
-            if(strpos($a, 'update') !== false) return $this->cmdUpdate(substr($a, 6), $ax);
-            if(strpos($a, 'key:') !== false) return $this->cmdKey(substr($a, 4), $ax);
-            if(strpos($a, 'make:') !== false) return $this->cmdMake(substr($a, 5), $ax);
+            if (strpos($a, '-h') !== false || strpos($a, '?') !== false) {
+                return $this->help();
+            }
+            if (strpos($a, 'optimize') !== false) {
+                return $this->cmdOptimize(substr($a, 8), $ax);
+            }
+            if (strpos($a, 'install') !== false) {
+                return $this->cmdInstall(substr($a, 7), $ax);
+            }
+            if (strpos($a, 'update') !== false) {
+                return $this->cmdUpdate(substr($a, 6), $ax);
+            }
+            if (strpos($a, 'key:') !== false) {
+                return $this->cmdKey(substr($a, 4), $ax);
+            }
+            if (strpos($a, 'make:') !== false) {
+                return $this->cmdMake(substr($a, 5), $ax);
+            }
 
             //Plugins
-            if(strpos($a, 'table:') !== false) {
+            if (strpos($a, 'table:') !== false) {
                 $plugin = new Plugin\Table(substr($a, 6), $ax);
                 return $plugin->run();
             }
@@ -69,29 +91,35 @@ class CLTool
     {
         echo '  key: '.$v;
 
-        if(count($arg) > 0) {
+        if (count($arg) > 0) {
             echo "\n\n  Arguments:";
-            foreach ($arg as $a) {echo "\n\t$a";}
+            foreach ($arg as $a) {
+                echo "\n\t$a";
+            }
         }
 
-        if($v == 'generate'){
+        if ($v == 'generate') {
             //check if path exists
-            if(!is_dir($this->configKeyPath)) $this->checkAndOrCreateDir($this->configKeyPath, true);
+            if (!is_dir($this->configKeyPath)) {
+                $this->checkAndOrCreateDir($this->configKeyPath, true);
+            }
 
             //Now, OPEN_SSL
             $this->createKeys();
             echo "\n  Can, OpenSSL keys & certificates - created success!";
             return "\n  Location: ".$this->configKeyPath."\n\n";
-        }
-
-        elseif($v == 'list'){
+        } elseif ($v == 'list') {
             echo "\n\n  Ciphers:";
-            foreach (mcrypt_list_algorithms() as $x) {echo "\n\t".$x;}
+            foreach (mcrypt_list_algorithms() as $x) {
+                echo "\n\t".$x;
+            }
             echo "\n\n  Cipher Modes:";
-            foreach (mcrypt_list_modes() as $x) {echo "\n\t".$x;}
+            foreach (mcrypt_list_modes() as $x) {
+                echo "\n\t".$x;
+            }
+        } else {
+            return "\n\n  ----- ERROR: Command 'key:$v' not found!\n".$this->help();
         }
-
-        else return "\n\n  ----- ERROR: Command 'key:$v' not found!\n".$this->help();
     }
 
     //Command MAKE
@@ -99,12 +127,15 @@ class CLTool
     {
         echo '  make: '.$v;
 
-        if(isset($arg[0])) $arg[0] = str_replace('\\', '/', $arg[0]);
-        else return "\n\n  ERROR: indique o NOME do arquivo!\n";
+        if (isset($arg[0])) {
+            $arg[0] = str_replace('\\', '/', $arg[0]);
+        } else {
+            return "\n\n  ERROR: indique o NOME do arquivo!\n";
+        }
 
         $type = strtolower(trim($v));
 
-        if($type != 'controller' && $type != 'model' && $type != 'html'){
+        if ($type != 'controller' && $type != 'model' && $type != 'html') {
             return "\n\n  ----- ERROR: Command 'make:$v' not found!\n".$this->help();
         }
 
@@ -128,12 +159,16 @@ class CLTool
     //Command UPDATE
     function cmdUpdate($v, $arg)
     {
-        $devbr = __DIR__.'/Composer/devbr/';
+        $devbr = _APP.'Composer/devbr/';
         $dir = scandir($devbr);
 
-        foreach($dir as $k){
-            if($k == '.' || $k == '..') continue;
-            if(is_file($devbr.$k.'/install')) echo include $devbr.$k.'/install';
+        foreach ($dir as $k) {
+            if ($k == '.' || $k == '..') {
+                continue;
+            }
+            if (is_file($devbr.$k.'/install')) {
+                echo include $devbr.$k.'/install';
+            }
         }
         echo "\n  >> Updated - success!\n";
     }
@@ -141,13 +176,18 @@ class CLTool
     // Checa um diretório e cria se não existe - retorna false se não conseguir ou não existir
     function checkAndOrCreateDir($dir, $create = false, $perm = '0777')
     {
-        if(is_dir($dir) && is_writable($dir)) return true;
-        elseif($create === false) return false;
+        if (is_dir($dir) && is_writable($dir)) {
+            return true;
+        } elseif ($create === false) {
+            return false;
+        }
 
         @mkdir($dir, $perm, true);
         @chmod($dir, $perm);
 
-        if(is_writable($dir)) return true;
+        if (is_writable($dir)) {
+            return true;
+        }
         return false;
     }
 
@@ -160,12 +200,14 @@ class CLTool
 
         $fileName = _APP.$name.$ext;
 
-        if(file_exists($fileName))
+        if (file_exists($fileName)) {
             return "\n\n  WARNNING: this file already exists!\n  ".$fileName."\n\n";
+        }
 
 
-        if(!$this->checkAndOrCreateDir(dirname($fileName),true))
+        if (!$this->checkAndOrCreateDir(dirname($fileName), true)) {
             return "\n\n  WARNNING: access denied in directory '".dirname($fileName)."'\n\n";
+        }
 
         //get template
         $file = file_get_contents($this->configTemplate.$type.'.tpl');
@@ -173,8 +215,10 @@ class CLTool
         //replace %namespace% and %name%
         $file = str_replace('%name%', ucfirst(basename($name)), $file);
         $namespace = '';
-        foreach(explode('/', dirname($name)) as $namespc){
-            if($namespc == '.') break;
+        foreach (explode('/', dirname($name)) as $namespc) {
+            if ($namespc == '.') {
+                break;
+            }
             $namespace .= ucfirst($namespc).'\\';
         }
         $file = str_replace('%namespace%', trim($namespace, '\\'), $file);
@@ -182,8 +226,11 @@ class CLTool
         //saving the file
         $ok = file_put_contents($fileName, $file);
 
-        if($ok) return "\n\n  Arquivo '".$fileName."' criado com sucesso!\n\n";
-        else return "\n\n  Não foi possível criar '".$name."'!\n\n";
+        if ($ok) {
+            return "\n\n  Arquivo '".$fileName."' criado com sucesso!\n\n";
+        } else {
+            return "\n\n  Não foi possível criar '".$name."'!\n\n";
+        }
     }
 
 
@@ -192,13 +239,13 @@ class CLTool
      */
     function createKeys()
     {
-        //Create Can Keys            
+        //Create Can Keys
         shuffle(Lib\Can::$base);
         shuffle(Lib\Can::$extra_base);
         file_put_contents($this->configKeyPath.'can.key', implode(Lib\Can::$base)."\n".implode(Lib\Can::$extra_base));
 
         $SSLcnf = [];
-        $dn = []; 
+        $dn = [];
 
         //get configurations
         include $this->configKeyPath.'openssl.config.php';
@@ -221,7 +268,7 @@ class CLTool
         openssl_x509_export_to_file($sscert, $this->configKeyPath.'self_signed_certificate.cer', false);
 
         //CHAVE PRIVADA (private.pem)
-        openssl_pkey_export_to_file($privkey , $this->configKeyPath.'private.key', null, $SSLcnf);
+        openssl_pkey_export_to_file($privkey, $this->configKeyPath.'private.key', null, $SSLcnf);
 
         //CHAVE PÚBLICA (public.key)
         return file_put_contents($this->configKeyPath.'public.key', openssl_pkey_get_details($privkey)['key']);
