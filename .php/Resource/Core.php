@@ -13,6 +13,8 @@
 
 namespace Resource;
 
+use Lib\Can;
+
 class Core 
 {
 
