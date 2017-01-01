@@ -13,9 +13,9 @@
 
 namespace Resource;
 
-use Lib\Can;
+use Lib;
 
-class Core 
+class CLTool 
 {
 
     private $configKeyPath = null;
@@ -25,7 +25,7 @@ class Core
 
     function __construct($argv)
     {
-        echo '  PHP Core!';
+        echo '  PHP Tools!';
         if (php_sapi_name() !== 'cli') exit('It\'s no cli!');
 
         //Constants:
