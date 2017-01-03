@@ -14,7 +14,7 @@
 
 namespace %namespace%;
 
-use Resourse\Main;
+use Resource\Main;
 use Resource\Model;
 
 /**
