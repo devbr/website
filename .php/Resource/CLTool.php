@@ -166,8 +166,8 @@ class CLTool
             if ($k == '.' || $k == '..') {
                 continue;
             }
-            if (is_file($devbr.$k.'/install')) {
-                echo include $devbr.$k.'/install';
+            if (is_file($devbr.$k.'/install.php')) {
+                echo include $devbr.$k.'/install.php';
             }
         }
         echo "\n  >> Updated - success!\n";
