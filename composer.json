@@ -1,6 +1,6 @@
 {
     "name": "devbr/website",
-    "description": "Core for PHP website",
+    "description": "Basic & Simple Skeleton for PHP WebSites",
     "keywords": ["framework","skeleton","core","php","web","site","server","side"],
     "license": "MIT",
     "type": "project",
@@ -21,7 +21,8 @@
         "php": ">=7.0.9",
         "devbr/html": "~0.0.1",
         "devbr/database": "~0.0.1",
-        "devbr/router": "~0.0.1"
+        "devbr/router": "~0.0.1",
+        "devbr/tools": "~0.0.1"
     },
     "autoload": {
         "psr-4": {"": ".php/"}
@@ -29,6 +30,7 @@
     "scripts": {
         "post-install-cmd":         ["php index.php install"],
         "post-update-cmd":          ["php index.php update"],
-        "post-create-project-cmd":  ["php index.php key:generate"]
+        "post-create-project-cmd":  ["php index.php key:generate"],
+        "run":                      ["php index.php"]
     }
 }

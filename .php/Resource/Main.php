@@ -35,9 +35,9 @@
 namespace Resource;
 
 use Lib;
-use Lib\App; 
+use Lib\App;
 
-class Main 
+class Main
 {
     public $model = null;
     public $key = null;
@@ -55,16 +55,53 @@ class Main
     /** Abstratic Controller constructor
      *  -- Bypass it in your controller
      */
-    function __construct($config = []) 
+    function __construct($config = [])
     {
-        if(isset($config['params'])) $this->params = $config['params'];
-        if(isset($config['request'])) $this->request = $config['request'];
+        if (isset($config['params'])) {
+            $this->params = $config['params'];
+        }
+        if (isset($config['request'])) {
+            $this->request = $config['request'];
+        }
 
         //if Twig teplate engine is required
-        if(isset($this->twig) 
-            && $this->twig == true) 
+        if (isset($this->twig)
+            && $this->twig == true) {
             $this->twig = \Config\Twig\Twig::this();
-    } 
+        }
+    }
+
+    /**
+     * Switchover back
+     *
+     * @return void send HTML to browser
+     */
+    function index()
+    {
+        //Configuration of style & script
+        $this->scripts = ['main'];
+        $this->styles  = ['home'];
+
+        //call html ...end send
+        $this->response('home', ['title'=>'Hello World']);
+    }
+
+
+    /**
+     * Test access
+     * DELETE --> it's only for EXAMPLE
+     *
+     * @param string $rqst  URI requested from user
+     * @param array  $param Array of parameters captured by the router
+     *
+     * @return void Send HTML contents
+     */
+    function indexTest($rqst, $param)
+    {
+        echo '<h1>Test</h1>'.
+             '<br><b>Request: </b>'.$rqst.
+             '<br><b>Params: </b><pre>'.print_r($param, true).'</pre>';
+    }
 
     
     function pageNotFound()
@@ -82,21 +119,24 @@ class Main
      *
      *
      */
-    final function decodePostData() 
+    final function decodePostData()
     {
-        if (!isset($_POST['data']))
+        if (!isset($_POST['data'])) {
             return false;
+        }
         $rec = json_decode($_POST['data']);
 
         //Se não for JSON...
-        if (!is_object($rec))
+        if (!is_object($rec)) {
             return false;
+        }
 
         if (isset($rec->enc)) {
             $this->key = (new Lib\User)->getToken($rec->id);
             $this->userId = $rec->id;
-            if ($this->key === false)
+            if ($this->key === false) {
                 return false;
+            }
 
             //Decriptando
             Lib\Aes::size(256);
@@ -109,7 +149,7 @@ class Main
      *
      *
      */
-    final function sendEncriptedData($dt) 
+    final function sendEncriptedData($dt)
     {
         //Json encoder
         $enc = json_encode($dt);
@@ -123,47 +163,53 @@ class Main
     }
 
 
-    /** 
+    /**
      * Cria, configura e retorna o HTML para o usuário
      */
     public function response(
-        $body, 
-        $var = null, 
-        $name = null, 
-        $jsvar = null, 
-        $scripts = null, 
+        $body,
+        $var = null,
+        $name = null,
+        $jsvar = null,
+        $scripts = null,
         $styles = null,
         $template = null
-        )
-    {   
+    ) {
+       
         $d = new Lib\Html(($name === null ? 'body' : $name));
         
-        if($this->navbar !== null) $d->body($this->navbar);
+        if ($this->navbar !== null) {
+            $d->body($this->navbar);
+        }
 
         $d->body($body);
 
-        if($name === false){
+        if ($name === false) {
             $d->header(false);
             $d->footer(false);
         }
 
-        if($var !== null){
-            foreach ($var as $k=>$v) {
+        if ($var !== null) {
+            foreach ($var as $k => $v) {
                 $d->val($k, $v);
             }
         }
 
-        if($jsvar !== null){
-            foreach ($jsvar as $k=>$v) {
+        if ($jsvar !== null) {
+            foreach ($jsvar as $k => $v) {
                 $d->jsvar($k, $v);
             }
         }
 
-        if($scripts !== null) $this->scripts = array_merge($this->scripts, $scripts);
-        if($styles !== null)  $this->styles  = array_merge($this->styles, $styles);
+        if ($scripts !== null) {
+            $this->scripts = array_merge($this->scripts, $scripts);
+        }
+        if ($styles !== null) {
+            $this->styles  = array_merge($this->styles, $styles);
+        }
 
         $d->insertScripts($this->scripts);
-        $d->insertStyles($this->styles); 
+        $d->insertStyles($this->styles);
         
         return $d->render()->send();
     }
@@ -172,14 +218,16 @@ class Main
     /**
      * Pivo de ação
      */
-    public final function action()  
+    final public function action()
     {
         $rec = $this->decodePostData();
 
-        if($rec == false) $this->sendEncriptedData(['error'=>'Token inválido!']);
+        if ($rec == false) {
+            $this->sendEncriptedData(['error'=>'Token inválido!']);
+        }
 
         $dec = $rec['dec'];
-        switch($dec->action){
+        switch ($dec->action) {
             case 'resumo':
                 return $this->resumo($dec->table, $dec->data, $this->userId);
                 break;
@@ -192,20 +240,17 @@ class Main
                 break;
 
             case 'save':
-
                 //Object to Array
                 $values = get_object_vars($dec->row);
                 
                 //Select DB action: update/insert and get hook
-                if(isset($values['id']) && (0+$values['id'] < 0 || $values['id'] !== '')){
+                if (isset($values['id']) && (0+$values['id'] < 0 || $values['id'] !== '')) {
                     return $this->update($dec->table, $values);
                 } else {
                     unset($values['id']);
                     return $this->insert($dec->table, $values);
                 }
                 break;
-        }  
+        }
     }
-
-
 }

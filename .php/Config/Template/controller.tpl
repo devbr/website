@@ -1,14 +1,15 @@
 <?php
-
 /**
- * Description for %namespace%\%name%
- * @copyright   copiright
- * @license     MIT
- * @author      your name - your@mail.com
- * @version     0.1.7
- * @package     Limp
- * @access      public
- * @since       0.0.1
+ * %namespace%\%name%
+ * PHP version 7
+ *
+ * @category  Controller
+ * @package   Library
+ * @author    Bill Rocha <prbr@ymail.com>
+ * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
+ * @license   <https://opensource.org/licenses/MIT> MIT
+ * @version   GIT: 0.0.1
+ * @link      http://paulorocha.tk/github/devbr
  */
 
 namespace %namespace%;
@@ -16,6 +17,15 @@ namespace %namespace%;
 use Resourse\Main;
 use Resource\Model;
 
+/**
+ * %name% Class
+ *
+ * @category Controller
+ * @package  Library
+ * @author   Bill Rocha <prbr@ymail.com>
+ * @license  <https://opensource.org/licenses/MIT> MIT
+ * @link     http://paulorocha.tk/github/devbr
+ */
 class %name% extends Main 
 {
 

@@ -22,7 +22,7 @@
             <h1>Hello World!</h1>
 
         </div>
-        <div class="footer"></div>
+        <div class="footer"></div>        
         <x:script/>
     </body>
 </html>
