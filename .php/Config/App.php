@@ -15,7 +15,7 @@
 // Defaults
 error_reporting(E_ALL ^ E_STRICT ^ E_WARNING);
 setlocale (LC_ALL, 'pt_BR');
-date_default_timezone_set('America/Sao_Paulo'); 
+date_default_timezone_set('America/Sao_Paulo');
 
 // development only...
 ini_set('display_errors', '1');
@@ -25,24 +25,20 @@ ini_set('track_errors', '1');
 // Path to WWW
 $base = dirname(dirname(__DIR__));
 defined('_WWW')    || define('_WWW', str_replace('\\', '/', strpos($base, 'phar://') !== false
-                    		? dirname(str_replace('phar://', '',$base)).'/'
-                    		: $base.'/'));
+                            ? dirname(str_replace('phar://', '', $base)).'/'
+                            : $base.'/'));
 // Path if PHAR mode or false
 defined('_PHAR')   || define('_PHAR', strpos(_WWW, 'phar://') !== false ? _WWW : false);
-defined('_APP')    || define('_APP', dirname(__DIR__).'/');	//Path to Application
-defined('_CONFIG') || define('_CONFIG', __DIR__.'/');		//Path to config files
-defined('_HTML')   || define('_HTML', _APP.'Html/');		//Path to HTML files
-
-// Autoload
-set_include_path(_APP.PATH_SEPARATOR.get_include_path());
-spl_autoload_register(function($class) {
-    $file = _APP.str_replace('\\', '/', trim($class, '\\')).'.php';
-    if(file_exists($file) !== false) require_once $file;
-    return class_exists($class, false);
-});
+defined('_APP')    || define('_APP', dirname(__DIR__).'/');     //Path to Application
+defined('_CONFIG') || define('_CONFIG', __DIR__.'/');       //Path to config files
+defined('_HTML')   || define('_HTML', _APP.'Html/');        //Path to HTML files
 
 // Composer autoloader
-if(file_exists(_APP.'Composer/autoload.php')) include _APP.'Composer/autoload.php';
+if (file_exists(_APP.'Composer/autoload.php')) {
+    include _APP.'Composer/autoload.php';
+}
 
 //Onm Cli mode
-if(php_sapi_name() === 'cli') return new Resource\CLTool($argv);
+if (php_sapi_name() === 'cli') {
+    return new Resource\CLTool($argv);
+}

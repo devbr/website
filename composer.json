@@ -23,10 +23,8 @@
         "devbr/database": "~0.0.1",
         "devbr/router": "~0.0.1"
     },
-    "require-dev": {
-    },
     "autoload": {
-        "psr-4": {"Config\\": ".php/Config/"}
+        "psr-4": {"": ".php/"}
     },
     "scripts": {
         "post-install-cmd":         ["php index.php install"],

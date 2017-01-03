@@ -3,7 +3,7 @@ Core for PHP website.
 
 
 # Install
-In the root directory of your website, type (terminal):
+Open a terminal in root directory of your website and type:
 
 ```shell
 Composer create-project devbr/website ./ 
