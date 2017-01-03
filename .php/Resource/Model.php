@@ -1,15 +1,15 @@
 <?php
-
 /**
- * Limp - less is more in PHP
- * @copyright   Bill Rocha - http://plus.google.com/+BillRocha
- * @license     MIT
- * @author      Bill Rocha - prbr@ymail.com
- * @version     0.0.1
- * @package     Resource
- * @access      public
- * @since       0.3.0
+ * Resource\Model
+ * PHP version 7
  *
+ * @category  Model
+ * @package   Resource
+ * @author    Bill Rocha <prbr@ymail.com>
+ * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
+ * @license   <https://opensource.org/licenses/MIT> MIT
+ * @version   GIT: 0.0.1
+ * @link      http://paulorocha.tk/devbr
  */
  
 namespace Resource;
@@ -17,21 +17,33 @@ namespace Resource;
 use Lib\Db;
 use Config\Database;
 
-class Model {
-
+/**
+ * Model Class
+ *
+ * @category Model
+ * @package  Resource
+ * @author   Bill Rocha <prbr@ymail.com>
+ * @license  <https://opensource.org/licenses/MIT> MIT
+ * @link     http://paulorocha.tk/devbr
+ */
+class Model
+{
     public $db = null;
     public $table = null;
     public $error = false;
 
-    function __construct(){
+    function __construct()
+    {
         $this->db = new Db(Database::get());
     }
 
-    function getError(){
+    function getError()
+    {
         return $this->error;
     }
 
-    function setError($error = true){
+    function setError($error = true)
+    {
         return $this->error = $error;
     }
 
@@ -45,33 +57,35 @@ class Model {
     final public function doIndex($start = 0, $len = 30, $search = null)
     {
         //SEarch
-        if($search !== null && is_array($search)){
+        if ($search !== null && is_array($search)) {
             $tmp = ' WHERE ';
             $and = '';
-            foreach($search as $k=>$v){
+            foreach ($search as $k => $v) {
                 $tmp .= $and.$k.' LIKE "%'.$v.'%" ';
                 $and = ' AND ';
             }
             $search = $tmp;
-        } else $search = '';
+        } else {
+            $search = '';
+        }
 
         //Execute
         $this->db->query('SELECT * FROM '.$this->table.$search.' LIMIT '.(0+$start).', '.(0+$len));
         return $this->db->result();
     }
 
-    //Lista o selecionado    
+    //Lista o selecionado
     final public function doShow($id)
     {
-        $this->db->query('SELECT * FROM '.$this->table.' WHERE id = :id',[':id'=>$id]);
+        $this->db->query('SELECT * FROM '.$this->table.' WHERE id = :id', [':id'=>$id]);
         $result = $this->db->result();
         return $result ? $result : false;
     }
 
     //Insert/Update
     final public function doSave($values)
-    { 
-        if(isset($values['id'])){
+    {
+        if (isset($values['id'])) {
             $action = 'UPDATE ';
             $where = ' WHERE id = :id';
         } else {
@@ -81,9 +95,11 @@ class Model {
 
         $cols = '';
         $vals = [];
-        foreach($values as $k=>$v){     
-            if($k !== 'id') $cols .= $k.' = :'.$k.',';            
-            $vals[':'.$k] = $v;          
+        foreach ($values as $k => $v) {
+            if ($k !== 'id') {
+                $cols .= $k.' = :'.$k.',';
+            }
+            $vals[':'.$k] = $v;
         }
         
         $cols = substr($cols, 0, -1); //tirando a ultima vírgula
@@ -94,9 +110,6 @@ class Model {
     //Deletar
     final public function doDelete($id)
     {
-        return $this->db->query('DELETE FROM '.$this->table.' WHERE id = :id',[':id'=>$id]);
+        return $this->db->query('DELETE FROM '.$this->table.' WHERE id = :id', [':id'=>$id]);
     }
-
-
-
 }
