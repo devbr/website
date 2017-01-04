@@ -67,6 +67,9 @@ class Main
      */
     function index()
     {
+        if (!file_exists(_HTML.'nopage.html')) {
+            exit('<div style="position:absolute;top:50%;left:50%;width:300px;margin:-65px 0 0 -150px;text-align:center"><h1>Hello World!</h1>More info in <a href="https://github.com/devbr/website">Github</a>.</div>');
+        }
         //Configuration of style & script
         $this->scripts = ['main'];
         $this->styles  = ['home'];
@@ -95,6 +98,11 @@ class Main
     
     function pageNotFound()
     {
+        if (!file_exists(_HTML.'nopage.html')) {
+            exit('<div style="position:absolute;top:50%;left:50%;width:300px;margin:-65px 0 0 -150px;text-align:center"><h1>Page not found!</h1>Go back to <a href="'._URL.'">homepage</a>.</div>');
+        }
+
+        //Else...
         (new Lib\Html('nopage'))//->sendCache()
                                 ->header(false)
                                 ->body('nopage')
