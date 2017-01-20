@@ -17,7 +17,7 @@ error_reporting(E_ALL ^ E_STRICT ^ E_WARNING);
 setlocale (LC_ALL, 'pt_BR');
 date_default_timezone_set('America/Sao_Paulo');
 
-// development only...
+// Development only...
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 ini_set('track_errors', '1');
@@ -29,9 +29,9 @@ defined('_WWW')    || define('_WWW', str_replace('\\', '/', strpos($base, 'phar:
                             : $base.'/'));
 // Path if PHAR mode or false
 defined('_PHAR')   || define('_PHAR', strpos(_WWW, 'phar://') !== false ? _WWW : false);
-defined('_APP')    || define('_APP', dirname(__DIR__).'/');     //Path to Application
-defined('_CONFIG') || define('_CONFIG', __DIR__.'/');       //Path to config files
-defined('_HTML')   || define('_HTML', _APP.'Html/');        //Path to HTML files
+defined('_APP')    || define('_APP', dirname(__DIR__).'/');   //Path to Application
+defined('_CONFIG') || define('_CONFIG', __DIR__.'/');         //Path to config files
+defined('_HTML')   || define('_HTML', _APP.'Html/');          //Path to HTML files
 
 // Composer autoloader
 if (file_exists(_APP.'Composer/autoload.php')) {
