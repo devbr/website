@@ -10,3 +10,12 @@ Composer create-project devbr/website ./
 ```
 
 Require [PHP 7](http://www.php.net/) & [Composer](https://getcomposer.org/download/).
+
+
+# Extra
+Access <b>devbr</b> system commands using "Composer run":
+
+```shell
+Composer run -h
+```
+Displays a list of available commands
