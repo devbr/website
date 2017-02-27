@@ -38,7 +38,15 @@ class Main
     public $scripts = ['all'];
     public $styles = ['all'];
 
+    public $pathScript = false;
+    public $pathStyle = false;
+
     public $navbar = null;
+
+    public $patchHtml = _HTML;
+    public $header = false;
+    public $footer = false;
+    public $pageName = null;
 
 
     /** Abstratic Controller constructor
@@ -68,7 +76,7 @@ class Main
     function index()
     {
         if (!file_exists(_HTML.'nopage.html')) {
-            exit('<div style="position:absolute;top:50%;left:50%;width:300px;margin:-65px 0 0 -150px;text-align:center"><h1>Hello World!</h1>More info in <a href="https://github.com/devbr/website">Github</a>.</div>');
+            exit('<style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style><a href="https://github.com/devbr/website"><div><h1>Hello World!</h1>More info in Github.</div></a>');
         }
         //Configuration of style & script
         $this->scripts = ['main'];
@@ -99,7 +107,7 @@ class Main
     function pageNotFound()
     {
         if (!file_exists(_HTML.'nopage.html')) {
-            exit('<div style="position:absolute;top:50%;left:50%;width:300px;margin:-65px 0 0 -150px;text-align:center"><h1>Page not found!</h1>Go back to <a href="'._URL.'">homepage</a>.</div>');
+            exit('<style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style><a href="'._URL.'"><div><h1>Page not found!</h1>Click to homepage.</div></a>');
         }
 
         //Else...
@@ -160,6 +168,24 @@ class Main
     }
 
 
+
+    final public function sendPage($page, $data = null, $jsvar = null)
+    {
+        $html = new Lib\Html();
+        $html->setPathHtml($this->patchHtml)
+             ->body($page)
+             ->header($this->header)
+             ->footer($this->footer)
+             ->setName($this->pageName)
+             ->insertScripts($this->scripts)
+             ->insertStyles($this->styles)
+             ->val($data)
+             ->jsvar($jsvar)
+             ->render()
+             ->send();
+    }
+
+
     /**
      * Cria, configura e retorna o HTML para o usuário
      */
@@ -173,7 +199,11 @@ class Main
         $template = null
     ) {
        
-        $d = new Lib\Html(($name === null ? 'body' : $name));
+        $d = new Lib\Html(null, ($name === null ? 'body' : $name));
+
+        if ($this->patchHtml !== null) {
+            $d->setPathHtml($this->patchHtml);
+        }
         
         if ($this->navbar !== null) {
             $d->body($this->navbar);
@@ -181,7 +211,7 @@ class Main
 
         $d->body($body);
 
-        if ($name === false) {
+        if ($template === false) {
             $d->header(false);
             $d->footer(false);
         }
