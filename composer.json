@@ -22,8 +22,7 @@
         "devbr/html": "~0.0.1",
         "devbr/database": "~0.0.1",
         "devbr/router": "~0.0.1",
-        "devbr/tools": "~0.0.1",
-        "devbr/install": "~0.0.1"
+        "devbr/tools": "~0.0.1"
     },
     "autoload": {
         "psr-4": {"": ".php/"}
