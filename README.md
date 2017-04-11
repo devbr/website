@@ -19,3 +19,7 @@ Access <b>devbr</b> system commands using "Composer run":
 Composer run -h
 ```
 Displays a list of available commands
+
+---
+
+<b>Attention: </b><span style="color:#F00">To use minification and obfuscation of files with the command "optimize" it is necessary to <a href="https://www.java.com/en/download/">install JAVA</a>.</span>
