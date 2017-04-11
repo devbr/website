@@ -21,7 +21,7 @@
         "php": ">=5.6.28",
         "devbr/html": "~0.0.1",
         "devbr/database": "~0.0.1",
-        "devbr/router": "~0.0.1",
+        "devbr/router": "~0.1.0",
         "devbr/tools": "~0.0.1"
     },
     "autoload": {
