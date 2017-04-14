@@ -75,7 +75,7 @@ class Main
      */
     function index()
     {
-        if (!file_exists(_HTML.'nopage.html')) {
+        if (!file_exists(_HTML.'home.html')) {
             exit('<style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style><a href="https://github.com/devbr/website"><div><h1>Hello World!</h1>More info in Github.</div></a>');
         }
         //Configuration of style & script
