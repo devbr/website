@@ -33,6 +33,9 @@ defined('_APP')    || define('_APP', dirname(__DIR__).'/');   //Path to Applicat
 defined('_CONFIG') || define('_CONFIG', __DIR__.'/');         //Path to config files
 defined('_HTML')   || define('_HTML', _APP.'Html/');          //Path to HTML files
 
+//Optional mode >> 0 = default(production) | 1 = dev
+defined('_MODE')   || define('_MODE', '0');
+
 // Composer autoloader
 if (file_exists(_APP.'Composer/autoload.php')) {
     include _APP.'Composer/autoload.php';
