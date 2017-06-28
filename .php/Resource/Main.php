@@ -14,8 +14,8 @@
 
 namespace Resource;
 
-use Lib;
-use Lib\App;
+use Devbr;
+use Devbr\App;
 
 /**
  * Main Class
@@ -111,7 +111,7 @@ class Main
         }
 
         //Else...
-        (new Lib\Html('nopage'))//->sendCache()
+        (new Devbr\Html('nopage'))//->sendCache()
                                 ->header(false)
                                 ->body('nopage')
                                 ->footer(false)
@@ -137,15 +137,15 @@ class Main
         }
 
         if (isset($rec->enc)) {
-            $this->key = (new Lib\User)->getToken($rec->id);
+            $this->key = (new Devbr\User)->getToken($rec->id);
             $this->userId = $rec->id;
             if ($this->key === false) {
                 return false;
             }
 
             //Decriptando
-            Lib\Aes::size(256);
-            return ['data' => $rec, 'dec' => json_decode(Lib\Aes::dec($rec->enc, $this->key))];
+            Devbr\Aes::size(256);
+            return ['data' => $rec, 'dec' => json_decode(Devbr\Aes::dec($rec->enc, $this->key))];
         }
         return ['data' => $rec];
     }
@@ -160,8 +160,8 @@ class Main
         $enc = json_encode($dt);
 
         //Encriptando
-        Lib\Aes::size(256);
-        $enc = Lib\Aes::enc($enc, $this->key);
+        Devbr\Aes::size(256);
+        $enc = Devbr\Aes::enc($enc, $this->key);
 
         //Enviando
         exit($enc);
@@ -171,7 +171,7 @@ class Main
 
     final public function sendPage($page, $data = null, $jsvar = null)
     {
-        $html = new Lib\Html();
+        $html = new Devbr\Html();
         $html->setPathHtml($this->patchHtml)
              ->body($page)
              ->header($this->header)
@@ -199,7 +199,7 @@ class Main
         $template = null
     ) {
        
-        $d = new Lib\Html(null, ($name === null ? 'body' : $name));
+        $d = new Devbr\Html(null, ($name === null ? 'body' : $name));
 
         if ($this->patchHtml !== null) {
             $d->setPathHtml($this->patchHtml);
