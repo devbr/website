@@ -14,8 +14,8 @@
  
 namespace Resource;
 
-use Lib\Db;
-use Config\Database;
+use Devbr\Database;
+use Config\Devbr\Database as DbConf;
 
 /**
  * Model Class
@@ -34,7 +34,7 @@ class Model
 
     function __construct()
     {
-        $this->db = new Db(Database::get());
+        $this->db = new Database(DbConf::get());
     }
 
     function getError()
