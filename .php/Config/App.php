@@ -43,5 +43,5 @@ if (file_exists(_APP.'Composer/autoload.php')) {
 
 //Onm Cli mode
 if (php_sapi_name() === 'cli') {
-    return new Lib\Cli\Main($argv);
+    return new Devbr\Cli\Main($argv);
 }
