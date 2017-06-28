@@ -10,9 +10,7 @@
         "email": "prbr@ymail.com"
     }],
     "config": {
-        "vendor-dir": ".php/Composer",
-        "bin-dir": ".php/Composer/bin",
-        "preferred-install": "dist"
+        "vendor-dir": ".php/Composer"
     },
     "archive": {
         "exclude": ["/doc", "/*.json", "/.git", "/*.md"]
@@ -21,11 +19,14 @@
         "php": ">=5.6.28",
         "devbr/html": "~0.0.1",
         "devbr/database": "~0.0.1",
-        "devbr/router": "~0.1.0",
+        "devbr/router": "~0.1.2",
         "devbr/tools": "~0.0.1"
     },
     "autoload": {
-        "psr-4": {"": ".php/"}
+        "psr-4": {
+            "": ".php/",
+            "Config\\": ".php/Config/"
+        }
     },
     "scripts": {
         "post-install-cmd":         ["php index.php install"],
