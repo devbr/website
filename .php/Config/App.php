@@ -91,7 +91,7 @@ class App
 
             // HTML's template directory
             if (static::$html === false) {
-                static::$html = static::$php.'Html/';
+                static::$html = static::$config.'Html/';
             }
 
             //Onm Cli mode
