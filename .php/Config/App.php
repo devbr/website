@@ -68,6 +68,8 @@ class App
 
     function start()
     {
+        global $argv;
+        
         // Web
         if (static::$web === false) {
             $base = dirname(dirname(__DIR__));
@@ -94,7 +96,7 @@ class App
 
             //Onm Cli mode
             if (php_sapi_name() === 'cli') {
-                return new Devbr\Cli\Main($argv);
+                return new \Devbr\Cli\Main($argv);
             }
         } else {
             throw new Exception("ERROR: Can't find autoloader!", 1);
