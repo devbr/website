@@ -24,7 +24,6 @@
             "": ".php/",
             "Config\\": [
                 ".php/Config/",
-                ".php/Composer/devbr/router/Config/",
                 ".php/Composer/devbr/database/Config/",
                 ".php/Composer/devbr/html/Config/",
                 ".php/Composer/devbr/tools/Config/"
