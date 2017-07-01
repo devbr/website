@@ -12,11 +12,11 @@
  * @link      http://dbrasil.tk/devbr
  */
 
-//App Configurations ...
-include '.php/App.php';
+//Loading application settings
+include '.php/Config/App.php';
 
 //Setup and mount Application
-App::this()->start();
+Config\App::this()->start();
 
 //Route detection and controller call 
 Devbr\Router::this()->run();
