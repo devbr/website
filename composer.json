@@ -4,7 +4,7 @@
     "keywords": ["framework","skeleton","core","php","web","site","server","side"],
     "license": "MIT",
     "type": "project",
-    "homepage": "http://paulorocha.tk/devbr/",
+    "homepage": "http://dbrasil.tk/devbr/",
     "authors": [{
         "name": "Bill Rocha",
         "email": "prbr@ymail.com"
@@ -22,12 +22,7 @@
     "autoload": {
         "psr-4": {
             "": ".php/",
-            "Config\\": [
-                ".php/Config/",
-                ".php/Composer/devbr/database/Config/",
-                ".php/Composer/devbr/html/Config/",
-                ".php/Composer/devbr/tools/Config/"
-            ]        
+            "Config\\": ".php/Config/"
         }
     },
     "scripts": {
