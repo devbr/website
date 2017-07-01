@@ -12,21 +12,25 @@
     "config": {
         "vendor-dir": ".php/Composer"
     },
-    "archive": {
-        "exclude": ["/doc", "/*.json", "/.git", "/*.md"]
-    },
     "require": {
         "php": ">=5.6.28",
-        "devbr/html": "~0.1.1",
-        "devbr/database": "~0.1.2",
-        "devbr/router": "~0.1.5",
-        "devbr/tools": "~0.1.1"
+        "devbr/router": "dev-master",
+        "devbr/database": "dev-master",
+        "devbr/html": "dev-master",
+        "devbr/tools": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "": ".php/",
-            "Config\\": ".php/Config/"
-        }
+            "Config\\": [
+                ".php/Config/",
+                ".php/Composer/devbr/router/Config/",
+                ".php/Composer/devbr/database/Config/",
+                ".php/Composer/devbr/html/Config/",
+                ".php/Composer/devbr/tools/Config/"
+            ]        
+        },
+        "files" : [".php/teste.php"]
     },
     "scripts": {
         "post-install-cmd":         ["php index.php install"],
