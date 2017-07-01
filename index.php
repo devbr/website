@@ -1,20 +1,22 @@
 <?php
 /**
- * Resource\Main
+ * Front Controller
  * PHP version 7
  *
  * @category  Controller
- * @package   FrontController
+ * @package   Front Controller
  * @author    Bill Rocha <prbr@ymail.com>
  * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
  * @license   <https://opensource.org/licenses/MIT> MIT
- * @version   GIT: 0.0.1
- * @link      http://paulorocha.tk/devbr
+ * @version   0.0.1
+ * @link      http://dbrasil.tk/devbr
  */
 
 //App Configurations ...
-include '.php/Config/App.php';
+include '.php/App.php';
 
-//Detect access data ...
-// & call response controller 
+//Setup and mount Application
+App::this()->start();
+
+//Route detection and controller call 
 Devbr\Router::this()->run();
