@@ -43,7 +43,7 @@ class Main
 
     public $navbar = null;
 
-    public $patchHtml = _HTML;
+    public $patchHtml = '';
     public $header = false;
     public $footer = false;
     public $pageName = null;
@@ -54,6 +54,8 @@ class Main
      */
     function __construct($config = [])
     {
+        $this->patchHtml = \Config\App::Html();
+        
         if (isset($config['params'])) {
             $this->params = $config['params'];
         }
@@ -75,7 +77,7 @@ class Main
      */
     function index()
     {
-        if (!file_exists(_HTML.'home.html')) {
+        if (!file_exists(\Config\App::Html().'home.html')) {
             exit('<style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style><a href="https://github.com/devbr/website"><div><h1>Hello World!</h1>More info in Github.</div></a>');
         }
         //Configuration of style & script
@@ -106,7 +108,7 @@ class Main
     
     function pageNotFound()
     {
-        if (!file_exists(_HTML.'nopage.html')) {
+        if (!file_exists(\Config\App::Html().'nopage.html')) {
             exit('<style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style><a href="'._URL.'"><div><h1>Page not found!</h1>Click to homepage.</div></a>');
         }
 
