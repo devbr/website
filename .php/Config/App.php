@@ -1,6 +1,6 @@
 <?php
 /**
- * Config\App
+ * Config\Application
  * PHP version 7
  *
  * @category  Config
@@ -8,7 +8,7 @@
  * @author    Bill Rocha <prbr@ymail.com>
  * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
  * @license   <https://opensource.org/licenses/MIT> MIT
- * @version   GIT: 0.0.2
+ * @version   0.0.2
  * @link      http://dbrasil.tk/devbr
  */
 namespace Config;
