@@ -29,8 +29,7 @@
                 ".php/Composer/devbr/html/Config/",
                 ".php/Composer/devbr/tools/Config/"
             ]        
-        },
-        "files" : [".php/teste.php"]
+        }
     },
     "scripts": {
         "post-install-cmd":         ["php index.php install"],
