@@ -1,6 +1,12 @@
 # Website Core
 Core for PHP website.
 
+[![Latest Stable Version](https://poser.pugx.org/devbr/website/v/stable)](https://packagist.org/packages/devbr/website)
+[![Latest Unstable Version](https://poser.pugx.org/devbr/website/v/unstable)](https://packagist.org/packages/devbr/website)
+[![License](https://poser.pugx.org/devbr/website/license)](https://packagist.org/packages/devbr/website)
+[![Total Downloads](https://poser.pugx.org/devbr/website/downloads)](https://packagist.org/packages/devbr/website)
+[![Monthly Downloads](https://poser.pugx.org/devbr/website/d/monthly)](https://packagist.org/packages/devbr/website)
+
 
 # Install
 Open a terminal in root directory of your website and type:
