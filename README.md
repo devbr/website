@@ -32,7 +32,7 @@ In a terminal, type:
 ```shell
 Composer run make:controller Blog\Front\Page
 ```
-A new file in the <code>[root]/.php/Blog/Front/Page.php</code> path will be created containing the minimum code (based on template).
+A new file in the <code>.php/Blog/Front/Page.php</code> path will be created containing the minimum code (based on template).
 
 ---
 
