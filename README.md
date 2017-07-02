@@ -26,6 +26,14 @@ Composer run -h
 ```
 Displays a list of available commands
 
+## Create a Controller
+In a terminal, type:
+
+```shell
+Composer run make:controller Blog\Front\Page
+```
+A new file in the <root>.php/Blog/Front/Page.php path will be created containing the minimum code (based on template).
+
 ---
 
 <b>Attention: </b><span style="color:#F00">To use minification and obfuscation of files with the command "optimize" it is necessary to <a href="https://www.java.com/en/download/">install JAVA</a>.</span>
