@@ -40,4 +40,4 @@ A new file in the <code>.php/Blog/Front/Page.php</code> path will be created con
 
 <b>Attention: </b><span style="color:#F00">To use minification and obfuscation of files with the command "optimize" it is necessary to <a href="https://www.java.com/en/download/">install JAVA</a>.</span>
 
-<p align="center"><img src="http://dbrasil.tk/media/db.png" width="64"></p>
+<p align="center"><img src="http://dbrasil.tk/media/db64.png"></p>
