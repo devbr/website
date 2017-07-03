@@ -20,3 +20,10 @@ Config\App::this()->start();
 
 //Route detection and controller call 
 Devbr\Router::this()->run();
+
+/*
+	Optimize your application before putting it into production mode with the following command:
+
+	"composer dump-autoload --optimize"
+
+*/
