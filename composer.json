@@ -10,7 +10,8 @@
         "email": "prbr@ymail.com"
     }],
     "config": {
-        "vendor-dir": ".php/Composer"
+        "vendor-dir": ".php/Composer",
+        "classmap-authoritative": true
     },
     "require": {
         "php": ">=5.6.28",
