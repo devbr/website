@@ -39,6 +39,29 @@ A new file in the <code>.php/Blog/Front/Page.php</code> path will be created con
 
 ---
 
-<b>Attention: </b><span style="color:#F00">To use minification and obfuscation of files with the command "optimize" it is necessary to <a href="https://www.java.com/en/download/">install JAVA</a>.</span>
+<b>Attention: </b>
+
+To use minification and obfuscation of files with the command "optimize" it is necessary to <a href="https://www.java.com/en/download/">install JAVA</a>.
+
+You need to enable Apache mod_rewrite.
+
+At the terminal, type:
+
+```shell
+$ sudo a2enmod rewrite
+```
+You may also need to add these (minimum) rows in VirtualHost settings:
+
+```shell
+<VirtualHost *:80>
+  DocumentRoot /var/www/website
+  
+  <Directory /var/www/website>
+    AllowOverride All
+  </Directory>
+<VirtualHost/>
+```
+
+
 
 <p align="center"><img src="http://dbrasil.tk/media/db64.png"></p>
