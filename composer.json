@@ -14,7 +14,7 @@
         "classmap-authoritative": true
     },
     "require": {
-        "php": ">=5.6.28",
+        "php": ">=5.6",
         "devbr/router": "dev-master",
         "devbr/database": "dev-master",
         "devbr/html": "dev-master",
