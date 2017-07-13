@@ -3,7 +3,7 @@
 # Website Core 
 Core for PHP website.
 
-[![Build Status](https://travis-ci.org/pedra/limp.svg)](https://travis-ci.org/devbr/website)
+[![Build Status](https://travis-ci.org/devbr/website.svg)](https://travis-ci.org/devbr/website)
 [![Latest Stable Version](https://poser.pugx.org/devbr/website/v/stable)](https://packagist.org/packages/devbr/website)
 [![Latest Unstable Version](https://poser.pugx.org/devbr/website/v/unstable)](https://packagist.org/packages/devbr/website)
 [![License](https://poser.pugx.org/devbr/website/license)](https://packagist.org/packages/devbr/website)
