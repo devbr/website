@@ -1,35 +1,51 @@
 body {
-	font-family: "Kotta One", "Trebuchet MS", Helvetica, sans-serif;
-	padding: 0;
-	margin: 0;
+    font-family: "Kotta One","Trebuchet MS",Helvetica,sans-serif;
+    padding: 0;
+    margin: 0;
+    background:#FF5722;
+    color:#FFE;
+}
+a {
+    color:#FFEB3B;
 }
 
 .container {
-	width: 560px;
-	margin: 0 auto 20px auto;
-	padding:20px 0;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
-	font-size: 6.5em;
-	margin:20px 0;
-	padding:0;
-	font-family: "Kotta One", Arial, monospace;
+    font-size: 3.9em;
+    margin: 20px 0;
+    padding: 0;
+    font-family: "Kotta One",Arial,monospace
+}
+
+iframe {
+    width: 100%;
 }
 
 footer {
-	border-top: 1px solid #DDD;
-	margin:30px 0;
-	padding: 10px 0;
-	color:#999;
+    border-top: 1px solid #DDD;
+    margin: 30px 0 0 0;
+    padding: 10px 0;
+    color: #FFEB3B
 }
 
 footer img {
-	float: right;
-	margin-top: -20px;
-	width: 48px
+    width: 48px;
+    display: block;
+    margin: 60px auto 0 auto;
 }
 
 nav {
-	text-align: center;
+    text-align: center
+}
+
+@media screen and (min-width: 400px) {
+	footer img {
+	    float:right;
+	    margin:-20px 0 0 0;
+	}
 }
