@@ -26,7 +26,6 @@
             "Config\\": ".php/Config/"
         }
     },
-
     "require-dev": {
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1"
@@ -36,11 +35,10 @@
             ".php/Tests/StackTest.php"
         ]
     },
-
     "scripts": {
-        "post-install-cmd":         ["php index.php install"],
-        "post-update-cmd":          ["php index.php update"],
-        "post-create-project-cmd":  ["php index.php key:generate"],
-        "run":                      ["php index.php Main::index"]
+        "post-install-cmd":         ["php index.php Main install"],
+        "post-update-cmd":          ["php index.php Main update"],
+        "post-create-project-cmd":  ["php index.php Main key:generate"],
+        "run":                      ["php index.php Main"]
     }
 }
