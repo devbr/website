@@ -4,7 +4,7 @@
     "keywords": ["framework","skeleton","core","php","web","site","server","side"],
     "license": "MIT",
     "type": "project",
-    "homepage": "http://dbrasil.tk/devbr/",
+    "homepage": "https://github.com/devbr/",
     "authors": [{
         "name": "Bill Rocha",
         "email": "prbr@ymail.com"
@@ -36,9 +36,9 @@
         ]
     },
     "scripts": {
-        "post-install-cmd":         ["php index.php Main install"],
-        "post-update-cmd":          ["php index.php Main update"],
-        "post-create-project-cmd":  ["php index.php Main key:generate"],
-        "run":                      ["php index.php Main"]
+        "post-install-cmd":         ["php index.php install"],
+        "post-update-cmd":          ["php index.php update"],
+        "post-create-project-cmd":  ["php index.php key:generate"],
+        "run":                      ["php index.php"]
     }
 }
