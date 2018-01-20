@@ -80,7 +80,7 @@ class App
 
             // HTML's template directory
             if (static::$html === false) {
-                static::$html = static::$config.'Html/';
+                static::$html = static::$config.'Devbr/Html/';
             }
 
             //Onm Cli mode
@@ -104,9 +104,8 @@ class App
     public function welcomePage()
     {
         if (!file_exists(static::$html.'welcome.html')) {
-            exit('<html><head><style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style></head><body><a href="https://github.com/devbr/website"><div><h1>Hello World!</h1>More info in Github.</div></a></body></html>');
+            exit('<html><head><style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}img{display:block;margin:0 auto}a{color:#068;font-family:sans-serif}</style></head><body><a href="https://github.com/devbr/website"><div><img src="/img/db64.png"><h1>Hello World!</h1>More info in Github.</div></a></body></html>');
         }
-        //\Devbr\App::e(static::$html);
         //call html ...end send
         (new Devbr\Html)->sendPage('welcome', ['title'=>'Hello World'], null, 'main.min', 'main.min');
     }
@@ -115,11 +114,11 @@ class App
     public function pageNotFound()
     {
         if (!file_exists(static::$html.'nopage.html')) {
-            exit('<html><head><style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center}</style></head><body><a href="'._URL.'"><div><h1>Page not found!</h1>Click to homepage.</div></a></body></html>');
+            exit('<html><head><style>h1{font-size:2em;margin:0;padding:5px 0}div{position:absolute;top:50%;left:50%;width:50%;margin:-145px 0 0 -25%;text-align:center;color:#068;font-family:sans-serif}</style></head><body><a href="/"><div><h1>Page not found!</h1>Click to homepage.</div></a></body></html>');
         }
 
         //Else...
-        (new Devbr\Html) //->sendCache()
+        (new Devbr\Html)
             ->header(false)
             ->body('nopage')
             ->footer(false)
