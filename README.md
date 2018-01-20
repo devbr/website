@@ -1,5 +1,3 @@
-<p align="center"><img src="https://raw.githubusercontent.com/devbr/website/master/img/db_96.png"></p>
-
 # Website Core 
 Core for PHP website.
 
