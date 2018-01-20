@@ -6,10 +6,10 @@
  * @category  Controller
  * @package   Front Controller
  * @author    Bill Rocha <prbr@ymail.com>
- * @copyright 2016 Bill Rocha <http://google.com/+BillRocha>
+ * @copyright 2017 Bill Rocha <http://google.com/+BillRocha>
  * @license   <https://opensource.org/licenses/MIT> MIT
  * @version   0.0.1
- * @link      http://dbrasil.tk/devbr
+ * @link      https://github.com/devbr/
  */
 
 //Setup and mount Application
