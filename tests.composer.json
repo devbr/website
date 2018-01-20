@@ -1,0 +1,45 @@
+{
+    "comment":"This is a version with Unit Tests - replace your 'composer.json' and run 'composer update'",
+    "name": "devbr/website",
+    "description": "Basic & Simple Skeleton for PHP WebSites",
+    "keywords": ["framework","skeleton","core","php","web","site","server","side"],
+    "license": "MIT",
+    "type": "project",
+    "homepage": "https://github.com/devbr/",
+    "authors": [{
+        "name": "Bill Rocha",
+        "email": "prbr@ymail.com"
+    }],
+    "config": {
+        "vendor-dir": ".php/Composer",
+        "classmap-authoritative": true
+    },
+    "require": {
+        "php": ">=5.6",
+        "devbr/router": "dev-master",
+        "devbr/database": "dev-master",
+        "devbr/html": "dev-master",
+        "devbr/tools": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "": ".php/",
+            "Config\\": ".php/Config/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload-dev": {
+        "classmap": [
+            ".php/Tests/StackTest.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd":         ["php index.php install"],
+        "post-update-cmd":          ["php index.php update"],
+        "post-create-project-cmd":  ["php index.php key:generate"],
+        "run":                      ["php index.php"]
+    }
+}
