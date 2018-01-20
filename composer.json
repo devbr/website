@@ -15,10 +15,10 @@
     },
     "require": {
         "php": ">=5.6",
-        "devbr/router": "dev-master",
-        "devbr/database": "dev-master",
-        "devbr/html": "dev-master",
-        "devbr/tools": "dev-master"
+        "devbr/router": "*",
+        "devbr/database": "*",
+        "devbr/html": "*",
+        "devbr/tools": "*"
     },
     "autoload": {
         "psr-4": {
