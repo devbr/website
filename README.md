@@ -64,4 +64,4 @@ You may also need to add these (minimum) rows in VirtualHost settings:
 
 
 
-<p align="center"><img src="http://dbrasil.tk/media/db64.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/devbr/website/master/img/db64.png"></p>
